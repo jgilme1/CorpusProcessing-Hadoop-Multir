@@ -62,6 +62,7 @@ From the /pre-parse-processing directory follow these instructions to run the ha
 
 ```mkdir classFolder```
 
+
 ```
 javac -source 1.6 -target 1.6 -classpath /path/to/stanford-corenlp-1.3.5.jar:/path/to/org.apache.hadoop/hadoop-core/jars/hadoop-core-0.20.2-cdh3u1.jar:/path/to/stanford-corenlp-1.3.5-models.jar:/path/to/joda-time-2.1.jar -d classFolder src/hadoop/PreParseProcessor.java
 ```
@@ -70,11 +71,48 @@ javac -source 1.6 -target 1.6 -classpath /path/to/stanford-corenlp-1.3.5.jar:/pa
 jar -cvf preparseprocessor.jar -C classFolder/ .
 ```
 
-```
- hadoop jar preparseprocessor.jar hadoop.PreParseProcessor -libjars /path/to/stanford-corenlp-1.3.5.jar,/path/to/org.apache.hadoop/hadoop-core/jars/hadoop-core-0.20.2-cdh3u1.jar,/path/to/stanford-corenlp-1.3.5-models.jar,/path/to/joda-time-2.1.jar /hdfs/path/to/input /hdfs/path/to/output 100 12
- ```
-
-
-
+```hadoop jar preparseprocessor.jar hadoop.PreParseProcessor -libjars /path/to/stanford-corenlp-1.3.5.jar,/path/to/org.apache.hadoop/hadoop-core/jars/hadoop-core-0.20.2-cdh3u1.jar,/path/to/stanford-corenlp-1.3.5-models.jar,/path/to/joda-time-2.1.jar /hdfs/path/to/input /hdfs/path/to/output 100(map tasks) 12(reduce tasks)```
 
 ###/post-parse-processing
+
+
+The post-parse processing takes in the following information for each sentence:
+
+* Parse String
+
+
+The input is in the following format:
+```
+SentenceID \t parseString
+0 \t (S1 (NP (NP (NNP BEIJING)) (, ,) (NP (NNP Oct.) (CD 28)) (PRN (-LRB- -LRB-) (NP (NNP Xinhua)) (-RRB- -RRB-))))
+```
+
+It outputs the following information for each setnence:
+
+* Dependency Parse
+
+To run this module you should have the following jars:
+
+* hadoop-core-0.20.2-cdh3u1.jar
+* stanford-corenlp-1.3.5.jar
+
+
+From the /post-parse-processing directory follow these instructions to run the hadoop job
+
+
+```mkdir classFolder```
+
+
+```
+javac -source 1.6 -target 1.6 -classpath /path/to/stanford-corenlp-1.3.5.jar:/path/to/org.apache.hadoop/hadoop-core/jars/hadoop-core-0.20.2-cdh3u1.jar -d classFolder src/hadoop/PostParseProcessor.java
+```
+
+```
+jar -cvf postparseprocessor.jar -C classFolder/ .
+```
+
+```hadoop jar postparseprocessor.jar hadoop.PostParseProcessor -libjars /path/to/stanford-corenlp-1.3.5.jar,/path/to/org.apache.hadoop/hadoop-core/jars/hadoop-core-0.20.2-cdh3u1.jar /hdfs/path/to/input /hdfs/path/to/output 300(map taskts)```
+
+
+
+
