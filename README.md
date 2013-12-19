@@ -71,7 +71,9 @@ javac -source 1.6 -target 1.6 -classpath /path/to/stanford-corenlp-1.3.5.jar:/pa
 jar -cvf preparseprocessor.jar -C classFolder/ .
 ```
 
-```hadoop jar preparseprocessor.jar hadoop.PreParseProcessor -libjars /path/to/stanford-corenlp-1.3.5.jar,/path/to/org.apache.hadoop/hadoop-core/jars/hadoop-core-0.20.2-cdh3u1.jar,/path/to/stanford-corenlp-1.3.5-models.jar,/path/to/joda-time-2.1.jar /hdfs/path/to/input /hdfs/path/to/output 100(map tasks) 12(reduce tasks)```
+```
+adoop jar preparseprocessor.jar hadoop.PreParseProcessor -libjars /path/to/stanford-corenlp-1.3.5.jar,/path/to/org.apache.hadoop/hadoop-core/jars/hadoop-core-0.20.2-cdh3u1.jar,/path/to/stanford-corenlp-1.3.5-models.jar,/path/to/joda-time-2.1.jar /hdfs/path/to/input /hdfs/path/to/output 100(map tasks) 12(reduce tasks)
+```
 
 ###/post-parse-processing
 
@@ -111,7 +113,9 @@ javac -source 1.6 -target 1.6 -classpath /path/to/stanford-corenlp-1.3.5.jar:/pa
 jar -cvf postparseprocessor.jar -C classFolder/ .
 ```
 
-```hadoop jar postparseprocessor.jar hadoop.PostParseProcessor -libjars /path/to/stanford-corenlp-1.3.5.jar,/path/to/org.apache.hadoop/hadoop-core/jars/hadoop-core-0.20.2-cdh3u1.jar /hdfs/path/to/input /hdfs/path/to/output 300(map taskts)```
+```
+hadoop jar postparseprocessor.jar hadoop.PostParseProcessor -libjars /path/to/stanford-corenlp-1.3.5.jar,/path/to/org.apache.hadoop/hadoop-core/jars/hadoop-core-0.20.2-cdh3u1.jar /hdfs/path/to/input /hdfs/path/to/output 300(map taskts)
+```
 
 
 
