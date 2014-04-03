@@ -10,8 +10,8 @@ reducerOutput = []
 cjprefix = "<s> "
 cjsuffix = " </s>"
 wd  = os.getcwd()
-#targetcd = os.getcwd()+"/bllip-parser.jar/"
-targetcd = os.getcwd()+"/../bllip-parser/"
+targetcd = os.getcwd()+"/bllip-parser.jar/"
+#targetcd = os.getcwd()+"/../bllip-parser/"
 cjParserArguments = ["./parse.sh", "-K", "-T50","-S"]
 
 # takes in (id\ttokens) format
