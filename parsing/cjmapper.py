@@ -55,7 +55,6 @@ def parseTokens(tokenSequences):
   sys.stderr.write("Parsing tokens\n")
   cjOutput = p.communicate(input=cjInput)[0].strip()
   sys.stderr.write("Parsed tokens\n")
-  print(cjOutput)
   
   #parse output
   i = 0
